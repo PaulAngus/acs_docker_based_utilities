@@ -1,0 +1,1 @@
+img="`docker image ls | grep apidoc | grep 0.1 | awk '{print $3}'`" ; cntr=`docker container ls -a | grep -v CONTAINER | awk '{print $1}'` || true ; docker container rm $cntr || true; docker image rm $img || true ; docker system prune -af || true
