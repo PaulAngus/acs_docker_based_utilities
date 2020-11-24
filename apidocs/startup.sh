@@ -13,9 +13,9 @@ RELEASE_DIR="/apache/cloudstack-release/$VERSION"
 ARCHIVE_FILE="apache-cloudstack-$VERSION-src"
 
 echo "Captured requirements:"
-echo "Status - $STATUS"
+echo "Status - $BUILD_TYPE"
 echo "Version - $VERSION"
-echo "Remote tmp output dir - $remote_tmp_output_dir"
+echo "Remote tmp output dir - $OUTPUT_DIR"
 echo "Starting Docker Container"
 
 if ["$BUILD_TYPE" == "release"]; then
@@ -36,7 +36,7 @@ fi
 
 if ["$BUILD_TYPE" == "tag"]; then
 
-  mkdir $CODE_DIR
+  mkdir -p $CODE_DIR
   cd $CODE_DIR 
   git clone https://github.com/apache/cloudstack && cd cloudstack && git checkout -b $VERSION
   LIBS=NONOSS && git clone https://github.com/rhtyd/cloudstack-nonoss.git $LIBS && cd $LIBS

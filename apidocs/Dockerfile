@@ -1,4 +1,4 @@
-﻿FROM centos:7
+FROM centos:7
 
 ENV PATH="/opt/maven/bin:/usr/lib/jvm/java-11-openjdk/bin:${PATH}"
 ENV JAVA_HOME="/usr/lib/jvm/java-11-openjdk"
@@ -11,4 +11,4 @@ RUN cd /tmp && wget http://apache.mirror.anlx.net/maven/maven-3/3.6.3/binaries/a
 
 COPY startup.sh /usr/bin/startup.sh
 ENTRYPOINT ["startup.sh"]
-CMD ["startup.sh"]
+#CMD ["startup.sh"]
