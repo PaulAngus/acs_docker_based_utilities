@@ -3,7 +3,23 @@ dockerfile for cloudstack api docs production
 
 container is:
 
-LAYER 1 - 'official' CentOS 7 image
-LAYER 2 - The depencieas for building CloudStack (4.14/4/15) are (yum) installed.
-Mavan is installed, then the source code and NONOSS jars for cloudtack is cloned from github.
-A build is run () to preseed the maven cache.
+#build_status="$1"
+#acs_version="$2"
+#container_output_dir="$3"
+#local_docker_output_dir="$4"
+
+
+build_type="release"
+acs_version="4.14.0.0"
+container_output_dir="/tmp/apihtml"
+local_docker_output_dir="/mnt/c/Users/Paul/Documents/apidocs_html"
+
+echo "Captured requirements:"
+echo "repo type - $build_type"
+echo "Version - $acs_version"
+echo "Remote output dir - $container_output_dir"
+echo "Local docker output_dir - $local_docker_output_dir"
+echo "Starting Docker Container"
+
+if [ -d "$local_docker_output_dir" ]; then rm -rf $local_docker_output_dir; fi
+mkdir -p $local_docker_output_dir
