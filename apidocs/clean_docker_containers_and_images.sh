@@ -28,3 +28,12 @@ for i in "${!oi_array[@]}"; do
     echo ${oi_array[$i]}
   docker image rm ${oi_array[$i]}
 done
+
+echo ""
+echo "Cleaning up volumes"
+orphan_volumes=`docker volume ls | grep -v "VOLUME" | awk '{print $2}'`
+ov_array=($orphan_volumes)
+for i in "${!ov_array[@]}"; do
+    echo ${ov_array[$i]}
+  docker volume rm ${ov_array[$i]}
+done

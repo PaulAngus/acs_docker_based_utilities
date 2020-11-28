@@ -28,11 +28,12 @@ echo "Starting Docker Container"
 if [ -d "$local_docker_output_dir" ]; then rm -rf $local_docker_output_dir; fi
 mkdir -p $local_docker_output_dir
 
-docker volume create tmp_apidocs
+docker volume create $volume_name
 
 # command to skip startup.sh to aid testing
-#docker run -it --entrypoint /bin/bash -v $container_output_dir:$local_docker_output_dir --env build_type=$build_type --env acs_version=$acs_version --env container_output_dir=$container_output_dir $docker_image
-docker run -v myvol2:$container_output_dir --env build_type=$build_type --env acs_version=$acs_version --env volume_name=$volume_name $docker_image
+docker run -it -v Ubuntu-20.04//$volume_name:$container_output_dir --env build_type=$build_type --env acs_version=$acs_version --env volume_name=$volume_name --entrypoint /bin/bash $docker_image
+
+#docker run -v $volume_name:$container_output_dir --env build_type=$build_type --env acs_version=$acs_version --env volume_name=$volume_name $docker_image
 
 cp -R /var/lib/docker/volumes/tmp_apidocs/_data/* $local_docker_output_dir/
 
