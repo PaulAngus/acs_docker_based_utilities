@@ -33,11 +33,11 @@ esac
 /usr/libexec/mysqld --user=mysql --console &
 sleep 5
 if [ ! -f "/tmp/db_deployed" ]; then
-  cd /acs && mvn -q -Pdeveloper -pl developer -Ddeploydb -DskipTests
-  cd /acs && mvn -q -Pdeveloper -pl developer -Ddeploydb-simulator -DskipTests
+  cd /acs && mvn -q -Pdeveloper -pl developer -Ddeploydb -DskipTests=true 
+  cd /acs && mvn -q -Pdeveloper -pl developer -Ddeploydb-simulator -DskipTests=true 
   touch /tmp/db_deployed
 fi
-cd /acs && mvn -Dsimulator -pl :cloud-client-ui jetty:run -Djava.net.preferIPv4Stack=true &
+cd /acs && mvn -Dsimulator -pl :cloud-client-ui jetty:run -Djava.net.preferIPv4Stack=true -DskipTests=true &
 
 if [[ "$build" == "yes" ]] && [ ! -f "/tmp/db_deployed" ]; then
   sleep 120

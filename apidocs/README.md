@@ -1,9 +1,17 @@
-# docker-simulator
+# docker-apidocs
+
 dockerfile for cloudstack api docs production
 
-container is:
 
-LAYER 1 - 'official' CentOS 7 image
-LAYER 2 - The depencieas for building CloudStack (4.14/4/15) are (yum) installed.
-Mavan is installed, then the source code and NONOSS jars for cloudtack is cloned from github.
-A build is run () to preseed the maven cache.
+
+container build:
+
+docker build --tag apidocs:02 .
+
+usage of wrapper:
+
+#build_status="$1"
+#acs_version="$2"
+#container_output_dir="$3"
+#local_docker_output_dir="$4"
+
