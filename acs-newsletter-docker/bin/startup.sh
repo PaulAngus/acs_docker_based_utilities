@@ -1,15 +1,14 @@
 #!/bin/bash
 
-working_dir=$destination
-
 # grab the newslater 'news'
 #url = 'https://raw.githubusercontent.com/shapeblue/cloudstack-www/master/data/newsletter.txt'
 #urllib.request.urlretrieve(url, '/tmp/newsletter.txt')
 
 # grab env vars
 
-working_dir="/opt"
-cd $working_dir
+code_dir="/opt"
+cd /opt
+$working_dir
 
 echo "creating conf file"
 python ./create_config.py

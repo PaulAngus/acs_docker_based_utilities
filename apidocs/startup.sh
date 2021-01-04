@@ -20,7 +20,6 @@ echo "Version - $VERSION"
 echo "container mounted output dir - $OUTPUT_DIR"
 echo ""
 echo "Checking Docker volume"
-touch $OUTPUT_DIR/tmp_file
 echo "Volume mounted, continuing"
 echo ""
 
