@@ -2,8 +2,6 @@
 
 dockerfile for cloudstack api docs production
 
-
-
 container build:
 
 docker build --tag apidocs:02 .

@@ -5,10 +5,9 @@
 #urllib.request.urlretrieve(url, '/tmp/newsletter.txt')
 
 # grab env vars
-
+working_dir=$destination
 code_dir="/opt"
-cd /opt
-$working_dir
+cd $working_dir
 
 echo "creating conf file"
 python ./create_config.py

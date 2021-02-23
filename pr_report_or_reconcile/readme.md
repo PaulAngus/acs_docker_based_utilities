@@ -1,10 +1,8 @@
-
-
 Git Summary
 ===========
 
-Premise:
-========
+Premise
+-------
 
 Self contained environment to:
 

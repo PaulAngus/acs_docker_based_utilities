@@ -35,9 +35,9 @@ def get_commits(repo, branch, tmp_dir):
 
     print("- Cloning repo to avoid too many Github API calls, sorry, this could take a while")
     dir_now = os.getcwd()
-    #if os.path.isdir(tmp_repo_dir):
-    #    shutil.rmtree(tmp_repo_dir)
-    #os.mkdir(tmp_repo_dir)
+    if os.path.isdir(tmp_dir):
+        shutil.rmtree(tmp_dir)
+    os.mkdir(tmp_dir)
     os.chdir(tmp_dir)
     repoClone = pygit2.clone_repository(repo.git_url, tmp_dir, bare=True, checkout_branch=branch)
     lines = subprocess.check_output(
@@ -88,6 +88,7 @@ def get_reverted_commits(repo, branch, prev_release_commit_date, tmp_repo_dir):
             date_time_str = ' '.join(commitdatestr.split(" ")[:-1])
             commitdate = datetime.strptime(date_time_str, '%c').date()
             if commitdate > previous_commit_date:
-                revertedcommit = re.search('.*This reverts commit ([A-Za-z0-9]*).*', commit['message'])
+                print(commit['message'])
+                revertedcommit = re.search('.*This [silently ]*reverts commit ([A-Za-z0-9]*).*', commit['message'])
                 revertedcommits.append(revertedcommit.group(1))
     return revertedcommits

@@ -7,7 +7,7 @@
 #docker run -v $(PWD)/local-dir/:/path/to/results/dir (...rest of the command..)
 
 
-localimage="PRoutput-$RANDOM"
+localimage="proutput-$RANDOM"
 volume_name="PRs"
 container_mount_dir="/tmp/PRs"
 local_docker_output_dir="/tmp/PRs"
@@ -15,7 +15,7 @@ local_docker_output_dir="/tmp/PRs"
 echo "Starting Docker Container"
 #remote_output_dir="`grep  'tmp_dir=' ./env.vars | awk -F '=' '{print $2}'`/dockeroutput"
 
-DOCKER_BUILDKIT=1 docker build --tag=$localimage . 
+DOCKER_BUILDKIT=1 docker build --tag $localimage .
 docker_image=`docker image ls | grep $localimage | awk '{print $3}'`
 
 docker run -v $volume_name:$container_mount_dir --env-file ./env.vars $docker_image
