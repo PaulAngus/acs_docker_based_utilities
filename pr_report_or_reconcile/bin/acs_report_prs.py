@@ -184,13 +184,13 @@ if __name__ == '__main__':
         docker_created_config = bool(False)
 
     try:
-        destination = str(args['--destination'])
+        destination = str(args['--container_mount_dir'])
     except:
-        destination = "/opt"
+        destination = "/tmp/PRs"
 
     tmp_dir="/tmp"
     if docker_created_config:
-        tmp_tmp_dir =  str(tmp_dir + "/docker_output")
+        tmp_tmp_dir =  str(destination)
         try:
             os.rmdir(tmp_tmp_dir)
         except OSError:

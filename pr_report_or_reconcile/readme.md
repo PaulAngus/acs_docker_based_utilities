@@ -39,9 +39,23 @@ Task list
 
 
 
-Brain dump of commands:
------------------------
+How it works:
+-------------
 
-BUILD_KIT=1 docker build --tag acsn:0.1 .
+acs_github_docker.sh
 
-docker run --env-file env.vars acsn  #untried
+Creates a container image based on a python image.
+(TODO) split image creation and container running.
+
+Creates (runs) a container with a volume attached and passes the contents of the env.vars file as environment vars.
+(TODO) document the passing of the variables as individual variables (more secure that having github PAT in a file)
+
+Output file is stored in the attached volume.
+
+Script waits for the container to finish, then copies the output file to local filesystem deleting removing volume and container.
+
+
+
+
+
+ 

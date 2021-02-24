@@ -8,7 +8,6 @@
 
 
 localimage="proutput-$RANDOM"
-volume_name="PRs"
 container_mount_dir="/tmp/PRs"
 local_docker_output_dir="/tmp/PRs"
 
@@ -18,12 +17,11 @@ echo "Starting Docker Container"
 DOCKER_BUILDKIT=1 docker build --tag $localimage .
 docker_image=`docker image ls | grep $localimage | awk '{print $3}'`
 
-docker run -v $volume_name:$container_mount_dir --env-file ./env.vars $docker_image
+# testing:  docker run --mount type=bind,source="${PWD}",target="$container_mount_dir" --rm -it --env-file ./env.vars $docker_image
+docker run --mount type=bind,source="${PWD}",target="$container_mount_dir" --env-file ./env.vars $docker_image
 
 running_container=`docker container ls -a | grep -v CONTAINER | grep -v 'Up ' | awk '{print $1}'`
 docker wait running_container
-cp -R /var/lib/docker/volumes/$volume_name/_data/* $local_docker_output_dir/
-
 
 echo ""
 echo "Stopping running containers"
