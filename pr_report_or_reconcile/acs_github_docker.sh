@@ -18,7 +18,8 @@ DOCKER_BUILDKIT=1 docker build --tag $localimage .
 docker_image=`docker image ls | grep $localimage | awk '{print $3}'`
 
 # testing:  docker run --mount type=bind,source="${PWD}",target="$container_mount_dir" --rm -it --env-file ./env.vars $docker_image
-docker run --mount type=bind,source="${PWD}",target="$container_mount_dir" --env-file ./env.vars $docker_image
+mkdir "${PWD}/output"
+docker run --mount type=bind,source="${PWD}/output",target="$container_mount_dir" --env-file ./env.vars $docker_image
 
 running_container=`docker container ls -a | grep -v CONTAINER | grep -v 'Up ' | awk '{print $1}'`
 docker wait running_container

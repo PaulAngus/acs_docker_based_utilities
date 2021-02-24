@@ -184,20 +184,20 @@ if __name__ == '__main__':
         docker_created_config = bool(False)
 
     try:
-        destination = str(args['--container_mount_dir'])
+        destination = str(args['--destination'])
     except:
         destination = "/tmp/PRs"
 
     tmp_dir="/tmp"
     if docker_created_config:
-        tmp_tmp_dir =  str(destination)
+        destination =  str(destination)
         try:
-            os.rmdir(tmp_tmp_dir)
+            os.rmdir(destination)
         except OSError:
             print ("")
         
         try:
-            os.mkdir(tmp_tmp_dir)
+            os.mkdir(destination)
         except OSError:
             print ("")
         else:
@@ -347,7 +347,7 @@ if __name__ == '__main__':
     print("\nwriting tables")
 
     if docker_created_config:
-        output_file = str(tmp_tmp_dir + "/" + output_file_name)
+        output_file = str(destination + "/" + output_file_name)
     else:
         output_file = str(destination + "/" + output_file_name)
 

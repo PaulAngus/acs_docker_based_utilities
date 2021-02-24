@@ -23,8 +23,8 @@ global tmp_dir
 global output_file_name
 global destination
 
-working_dir = os.environ.get('destination')
-config_file = f"{working_dir}/conf.txt"
+#working_dir = os.environ.get('destination')
+config_file = f"/opt/conf.txt"
 
 with open(config_file ,"w") as file:
     file.write('{\n')

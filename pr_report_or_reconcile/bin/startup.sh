@@ -5,18 +5,15 @@
 #urllib.request.urlretrieve(url, '/tmp/newsletter.txt')
 
 # grab env vars
-working_dir=$destination
-code_dir="/opt"
-cd $working_dir
-
 echo "creating conf file"
-python ./create_config.py
+python /opt/create_config.py
 
 # run the PR and Commit generation
-
 echo "Running analyser"
-config_file="$working_dir/conf.txt"
-python ./acs_report_prs.py --config=$config_file
+config_file="/opt/conf.txt"
+python /opt/acs_report_prs.py --config=$config_file
+
+
 
 # combine files
 #filenames = ["/tmp/newsletter.txt", "/tmp/prs.txt"]
