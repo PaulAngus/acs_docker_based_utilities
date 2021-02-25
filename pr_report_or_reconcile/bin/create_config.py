@@ -52,17 +52,11 @@ with open(config_file ,"w") as file:
         col_title_width = os.environ.get('col_title_width')
         file.write('    "--col_title_width":"' +  str(col_title_width) + '",\n')
 
-    if 'tmp_dir' in os.environ:
-        tmp_dir = os.environ.get('tmp_dir')
-        file.write('    "--tmp_dir":"' + str(tmp_dir) + '",\n')
+    if 'python_output_dir' in os.environ:
+        python_output_dir = os.environ.get('python_output_dir')
+        file.write('    "--python_output_dir":"' + str(python_output_dir) + '",\n')
     else:
-        file.write('    "--tmp_dir":"/tmp,"\n')
-
-    if 'destination' in os.environ:
-        destination = os.environ.get('destination')
-        file.write('    "--destination":"' + str(destination) + '",\n')
-    else:
-        file.write('    "--destination":"/opt",\n')
+        file.write('    "--python_output_dir":"/tmp/python_output,"\n')
 
     if 'output_file_name' in os.environ:
         output_file_name = os.environ.get('output_file_name')

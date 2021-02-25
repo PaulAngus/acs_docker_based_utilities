@@ -184,27 +184,28 @@ if __name__ == '__main__':
         docker_created_config = bool(False)
 
     try:
-        destination = str(args['--destination'])
+        python_output_dir = str(args['--python_output_dir'])
     except:
-        destination = "/tmp/PRs"
+        python_output_dir = "/tmp/python_output"
 
-    tmp_dir="/tmp"
-    if docker_created_config:
-        destination =  str(destination)
-        try:
-            os.rmdir(destination)
-        except OSError:
-            print ("")
+    tmp_repo_dir="/tmp/repos"
+
+    if not docker_created_config:
+    #    python_output_dir =  str(python_output_dir)
+    #    try:
+    #        os.rmdir(python_output_dir)
+    #    except OSError:
+    #        print ("")
         
         try:
-            os.mkdir(destination)
+            os.mkdir(python_output_dir)
         except OSError:
             print ("")
         else:
-            print ("Successfully created empty output directory %s " % tmp_tmp_dir)
-            os.remove(str(args['--config']))
-
-    tmp_repo_dir = str(tmp_dir) + "/repo"   
+            print ("Successfully created empty output directory %s " % python_output_dir)
+    else:
+        # remove 'evidence' if file created by docker...
+        os.remove(str(args['--config']))
     
     gh = Github(gh_token)
 
@@ -347,9 +348,9 @@ if __name__ == '__main__':
     print("\nwriting tables")
 
     if docker_created_config:
-        output_file = str(destination + "/" + output_file_name)
+        output_file = str(python_output_dir + "/" + output_file_name)
     else:
-        output_file = str(destination + "/" + output_file_name)
+        output_file = str("/tmp/" + output_file_name)
 
     with open(output_file ,"w") as file:
 

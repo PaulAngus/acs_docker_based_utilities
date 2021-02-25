@@ -8,8 +8,7 @@
 
 
 localimage="proutput-$RANDOM"
-container_mount_dir="/tmp/PRs"
-local_docker_output_dir="/tmp/PRs"
+container_python_output_dir="/tmp/python_output"
 
 echo "Starting Docker Container"
 #remote_output_dir="`grep  'tmp_dir=' ./env.vars | awk -F '=' '{print $2}'`/dockeroutput"
@@ -19,7 +18,7 @@ docker_image=`docker image ls | grep $localimage | awk '{print $3}'`
 
 # testing:  docker run --mount type=bind,source="${PWD}",target="$container_mount_dir" --rm -it --env-file ./env.vars $docker_image
 mkdir "${PWD}/output"
-docker run --mount type=bind,source="${PWD}/output",target="$container_mount_dir" --env-file ./env.vars $docker_image
+docker run --mount type=bind,source="/tmp/output",target="$container_python_output_dir" --env-file ./env.vars $docker_image
 
 running_container=`docker container ls -a | grep -v CONTAINER | grep -v 'Up ' | awk '{print $1}'`
 docker wait running_container
